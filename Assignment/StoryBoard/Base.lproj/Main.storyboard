@@ -87,6 +87,7 @@
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dmE-Ky-ERr">
                                                             <rect key="frame" x="346" y="5" width="50" height="50"/>
+                                                            <color key="backgroundColor" red="0.84705882349999995" green="0.25490196079999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="dmE-Ky-ERr" secondAttribute="height" multiplier="1:1" id="Rv9-Jq-8je"/>
                                                                 <constraint firstAttribute="height" constant="50" id="j0f-rj-58H"/>

@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     var tableData = [Data]()
     
     fileprivate var segueIdentifier = "showItemSegue"
+    var selectedCell:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,8 @@ class ViewController: UIViewController {
         self.dataTable_view.reloadData()
     }
     
+    // Mark: Shadow
+    
     func shadowMaker(backView:UIView){
         backView.layer.cornerRadius = 10
         backView.layer.shadowColor = UIColor.gray.cgColor
@@ -68,6 +71,8 @@ class ViewController: UIViewController {
         backView.layer.shadowOpacity = 2.0
         backView.layer.shadowOffset = CGSize.init(width:2.0, height:2.0)
     }
+    
+    // Mark: Actions
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueIdentifier {
@@ -80,6 +85,7 @@ class ViewController: UIViewController {
     
 }
 
+// Mark: Table view delegates
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
@@ -113,7 +119,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "dataCell") as? ItemTableViewCell else{ return UITableViewCell() }
                 let _data = tableData[indexPath.section].sectionData[indexPath.row - 1]
                 cell.imageView?.image = nil
-                if let _name = _data["name"],let _image = _data["name"], let description = _data["description"]{
+                if let _name = _data["name"],let _image = _data["image"], let description = _data["description"]{
                     cell.lbl_name.text = "\(_name)"
                     cell.img_item.image = UIImage.init(named: "\(_image)")
                     cell.lbl_description.text = "\(description)"
@@ -137,12 +143,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             }
         }else{
             self.performSegue(withIdentifier: segueIdentifier, sender: tableData[indexPath.section].sectionData[indexPath.row - 1])
-//            let cell = tableView.cellForRow(at: indexPath) as! ItemTableViewCell
-//            let blur = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
-//            let blurView = UIVisualEffectView(effect: blur)
-//            blurView.alpha = 0.3
-//            blurView.frame = cell.contentView.bounds
-//            cell.contentView.addSubview(blurView)
+            
+            //        self.selectedCell = !selectedCell
+            //        let blur = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
+            //        let blurView = UIVisualEffectView(effect: blur)
+            //        blurView.removeFromSuperview()
+            //        blurView.alpha = 0.3
+            //        blurView.frame = cell.contentView.bounds
+            //        cell.contentView.addSubview(blurView)
         }
     }
     

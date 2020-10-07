@@ -14,8 +14,7 @@ class ItemTableViewCell: UITableViewCell {
     @IBOutlet weak var lbl_description: UILabel!
     @IBOutlet weak var img_item: UIImageView!
     @IBOutlet weak var background_view: UIView!
-    
-
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +24,10 @@ class ItemTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func prepareForReuse() {
+        img_item.image = nil
     }
 
 }
