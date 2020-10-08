@@ -26,10 +26,15 @@ class ItemViewController: UIViewController {
         back_btn.layer.shadowRadius = 5.0
         back_btn.layer.shadowOpacity = 2.0
         back_btn.layer.shadowOffset = CGSize.init(width:2.0, height:2.0)
-        if let name = selectedData["name"], let image = selectedData["image"], let description = selectedData["description"]{
+        if let name = selectedData["name"], let image = selectedData["image"], let description = selectedData["description"], let isSelected = selectedData["isSelected"] as? Bool{
             self.itemName_lbl.text = "\(name)"
             self.itemDescription_lbl.text = "\(description)"
             self.itemImage_img.image  = UIImage.init(named: "\(image)")
+            if isSelected{
+                self.back_btn.setTitle("Select", for: .normal)
+            }else{
+                self.back_btn.setTitle("Unselect", for: .normal)
+            }
         }
     }
     
@@ -37,5 +42,5 @@ class ItemViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-
+    
 }

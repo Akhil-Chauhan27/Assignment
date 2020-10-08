@@ -14,7 +14,9 @@ class ItemTableViewCell: UITableViewCell {
     @IBOutlet weak var lbl_description: UILabel!
     @IBOutlet weak var img_item: UIImageView!
     @IBOutlet weak var background_view: UIView!
-        
+    @IBOutlet weak var btn_Creative: CustomButton!
+    @IBOutlet weak var blurView: UIVisualEffectView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

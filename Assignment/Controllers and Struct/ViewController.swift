@@ -9,6 +9,12 @@
 import UIKit
 
 
+class CustomButton: UIButton {
+    
+    var indexPath:IndexPath?
+
+}
+
 
 struct Data{
     
@@ -20,7 +26,7 @@ struct Data{
 
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var dataTable_view: UITableView!
     
     var tableData = [Data]()
@@ -37,24 +43,24 @@ class ViewController: UIViewController {
         self.dataTable_view.estimatedRowHeight = 200
         
         tableData = [Data(opened: false, title: "", sectionData: [[:]]),
-                     Data(opened: false, title: "Pizza", sectionData: [["image":"Farmhouse", "name":"Farmhouse", "description":"A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent mushrooms and fresh tomatoes."],
-                                                                       ["image":"Fresh_Veggie", "name":"Fresh veggie", "description":"Onion I Capsicum."],
-                                                                       ["image":"Peppy_Paneer", "name":"Peppy paneer", "description":"Chunky paneer with crisp capsicum and spicy red pepper - quite a mouthful!"],
-                                                                       ["image":"Margherit", "name":"Margherit", "description":"A hugely popular margherita, with a deliciously tangy single cheese topping."]]),
+                     Data(opened: false, title: "Pizza", sectionData: [["image":"Farmhouse", "name":"Farmhouse", "description":"A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent mushrooms and fresh tomatoes.","isSelected":false],
+                                                                       ["image":"Fresh_Veggie", "name":"Fresh veggie", "description":"Onion I Capsicum.","isSelected":false],
+                                                                       ["image":"Peppy_Paneer", "name":"Peppy paneer", "description":"Chunky paneer with crisp capsicum and spicy red pepper - quite a mouthful!","isSelected":false],
+                                                                       ["image":"Margherit", "name":"Margherit", "description":"A hugely popular margherita, with a deliciously tangy single cheese topping.","isSelected":false]]),
                      
-        Data(opened: false, title: "Burger", sectionData: [["image":"Cheese Delux", "name":"Cheese delux", "description":" Cheese Deluxe is a fresh take on a Quarter Pounder® classic burger. Crisp leaf lettuce and three Roma tomato slices top a ¼ lb."],
-                                                           ["image":"Big Mac", "name":"Big mac", "description":"Mouthwatering perfection starts with two 100% pure beef patties and Big Mac sauce sandwiched between a sesame seed bun."],
-                                                           ["image":"Hamburger", "name":"Hamburger", "description":"One or more cooked patties of ground meat, usually beef, placed inside a sliced bread roll or bun."],
-                                                           ["image":"McDouble", "name":"McDouble", "description":"100% pure beef patties seasoned with just a pinch of salt and pepper."]]),
-        
-        Data(opened: false, title: "Beverage", sectionData: [["image":"sprite", "name":"Sprite", "description":"Clean, crisp, lemon-lime taste, Sprite quenches your thirst and helps you keep your cool."],
-                                                             ["image":"vanila", "name":"Vanila shake", "description":"Milk, Sugar, Cream, Corn Syrup, Natural Flavor, Mono and Diglycerides, Cellulose Gum, Guar Gum, Carrageenan, Vitamin A Palmitate."],
-                                                             ["image":"choco", "name":"Choco shake", "description":"Blended milk, chocolate syrup and chocolate ice cream."],
-                                                             ["image":"fanta", "name":"Fanta", "description":"Fruit-flavored carbonated soft drinks."]]),
-        
-        Data(opened: false, title: "Snacks", sectionData: [["image":"French_fries", "name":"French fries", "description":"Slices of fried potatos."],
-                                                           ["image":"apple_slice", "name":"Apple Slice", "description":"Slices of fine apple."],
-                                                           ["image":"chocoChips", "name":"Choco Chips", "description":"Chocolate chips with peanuts."]])]
+                     Data(opened: false, title: "Burger", sectionData: [["image":"Cheese Delux", "name":"Cheese delux", "description":" Cheese Deluxe is a fresh take on a Quarter Pounder® classic burger. Crisp leaf lettuce and three Roma tomato slices top a ¼ lb.","isSelected":false],
+                                                                        ["image":"Big Mac", "name":"Big mac", "description":"Mouthwatering perfection starts with two 100% pure beef patties and Big Mac sauce sandwiched between a sesame seed bun.","isSelected":false],
+                                                                        ["image":"Hamburger", "name":"Hamburger", "description":"One or more cooked patties of ground meat, usually beef, placed inside a sliced bread roll or bun.","isSelected":false],
+                                                                        ["image":"McDouble", "name":"McDouble", "description":"100% pure beef patties seasoned with just a pinch of salt and pepper.","isSelected":false]]),
+                     
+                     Data(opened: false, title: "Beverage", sectionData: [["image":"sprite", "name":"Sprite", "description":"Clean, crisp, lemon-lime taste, Sprite quenches your thirst and helps you keep your cool.","isSelected":false],
+                                                                          ["image":"vanila", "name":"Vanila shake", "description":"Milk, Sugar, Cream, Corn Syrup, Natural Flavor, Mono and Diglycerides, Cellulose Gum, Guar Gum, Carrageenan, Vitamin A Palmitate.","isSelected":false],
+                                                                          ["image":"choco", "name":"Choco shake", "description":"Blended milk, chocolate syrup and chocolate ice cream.","isSelected":false],
+                                                                          ["image":"fanta", "name":"Fanta", "description":"Fruit-flavored carbonated soft drinks.","isSelected":false]]),
+                     
+                     Data(opened: false, title: "Snacks", sectionData: [["image":"French_fries", "name":"French fries", "description":"Slices of fried potatos.","isSelected":false],
+                                                                        ["image":"apple_slice", "name":"Apple Slice", "description":"Slices of fine apple.","isSelected":false],
+                                                                        ["image":"chocoChips", "name":"Choco Chips", "description":"Chocolate chips with peanuts.","isSelected":false]])]
         
     }
     
@@ -83,7 +89,22 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc func selectionAction(sender:CustomButton){
+        if let index = sender.indexPath{
+            if let val = tableData[index.section].sectionData[index.row - 1]["isSelected"] as? Bool{
+                if val{
+                    tableData[index.section].sectionData[index.row - 1]["isSelected"] = false
+                }else{
+                    tableData[index.section].sectionData[index.row - 1]["isSelected"] = true
+                }
+                self.performSegue(withIdentifier: segueIdentifier, sender: tableData[index.section].sectionData[index.row - 1])
+            }
+            
+        }
+    }
 }
+    
+
 
 // Mark: Table view delegates
 
@@ -125,6 +146,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
                     cell.lbl_description.text = "\(description)"
                 }
                 self.shadowMaker(backView: cell.background_view)
+                
+                let blur = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
+                cell.blurView.effect = blur
+                if let isSelected =  _data["isSelected"] as? Bool{
+                    if isSelected{
+                        cell.blurView.alpha = 0.3
+                    }else{
+                        cell.blurView.alpha = 0.0
+                    }
+                }
+                cell.btn_Creative.indexPath = indexPath
+                cell.btn_Creative.removeTarget(nil, action: nil, for: .allEvents)
+                cell.btn_Creative.addTarget(self, action: #selector(selectionAction(sender:)), for: .touchUpInside)
                 return cell
             }
         }
@@ -142,15 +176,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
                 tableView.reloadSections(section, with: .none)
             }
         }else{
-            self.performSegue(withIdentifier: segueIdentifier, sender: tableData[indexPath.section].sectionData[indexPath.row - 1])
             
-            //        self.selectedCell = !selectedCell
-            //        let blur = UIBlurEffect(style: UIBlurEffect.Style.extraLight)
-            //        let blurView = UIVisualEffectView(effect: blur)
-            //        blurView.removeFromSuperview()
-            //        blurView.alpha = 0.3
-            //        blurView.frame = cell.contentView.bounds
-            //        cell.contentView.addSubview(blurView)
         }
     }
     
@@ -166,8 +192,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             }
         }
         return height
-    }
-    
-    
-    }
+    }    
+}
     

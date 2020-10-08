@@ -93,18 +93,37 @@
                                                                 <constraint firstAttribute="height" constant="50" id="j0f-rj-58H"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <visualEffectView opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D3e-ea-x4E">
+                                                            <rect key="frame" x="0.0" y="0.0" width="404" height="87"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NgJ-pd-NtA">
+                                                                <rect key="frame" x="0.0" y="0.0" width="404" height="87"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                            <blurEffect style="regular"/>
+                                                        </visualEffectView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0G8-er-c7C" customClass="CustomButton" customModule="Assignment" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="404" height="87"/>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="D3e-ea-x4E" secondAttribute="trailing" id="1YU-mc-f4o"/>
+                                                        <constraint firstItem="0G8-er-c7C" firstAttribute="leading" secondItem="Fx1-kh-TeH" secondAttribute="leading" id="9xc-uJ-v1P"/>
                                                         <constraint firstItem="dmE-Ky-ERr" firstAttribute="leading" secondItem="5Ol-d4-sOc" secondAttribute="trailing" constant="8" id="JTT-BD-egY"/>
+                                                        <constraint firstItem="0G8-er-c7C" firstAttribute="top" secondItem="Fx1-kh-TeH" secondAttribute="top" id="LbX-v2-wv8"/>
                                                         <constraint firstItem="5Ol-d4-sOc" firstAttribute="leading" secondItem="Fx1-kh-TeH" secondAttribute="leading" constant="8" id="Le2-UM-efX"/>
                                                         <constraint firstItem="81N-Ph-MVH" firstAttribute="leading" secondItem="Fx1-kh-TeH" secondAttribute="leading" constant="8" id="QgY-Bf-uHM"/>
+                                                        <constraint firstItem="D3e-ea-x4E" firstAttribute="leading" secondItem="Fx1-kh-TeH" secondAttribute="leading" id="Qu1-PH-wBh"/>
                                                         <constraint firstItem="5Ol-d4-sOc" firstAttribute="top" secondItem="81N-Ph-MVH" secondAttribute="bottom" constant="3" id="SI3-93-66O"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5Ol-d4-sOc" secondAttribute="bottom" constant="5" id="XFj-TK-fhh"/>
+                                                        <constraint firstAttribute="bottom" secondItem="D3e-ea-x4E" secondAttribute="bottom" id="YJx-aY-IGM"/>
+                                                        <constraint firstAttribute="trailing" secondItem="0G8-er-c7C" secondAttribute="trailing" id="bPd-H8-OUz"/>
                                                         <constraint firstItem="dmE-Ky-ERr" firstAttribute="top" secondItem="Fx1-kh-TeH" secondAttribute="top" constant="5" id="h4p-Vc-Vnv"/>
                                                         <constraint firstItem="dmE-Ky-ERr" firstAttribute="leading" secondItem="81N-Ph-MVH" secondAttribute="trailing" constant="8" id="ivQ-ip-ngt"/>
+                                                        <constraint firstAttribute="bottom" secondItem="0G8-er-c7C" secondAttribute="bottom" id="luL-wj-U5k"/>
                                                         <constraint firstItem="81N-Ph-MVH" firstAttribute="top" secondItem="Fx1-kh-TeH" secondAttribute="top" constant="5" id="mxn-qG-HtL"/>
                                                         <constraint firstAttribute="trailing" secondItem="dmE-Ky-ERr" secondAttribute="trailing" constant="8" id="r0i-61-ySh"/>
+                                                        <constraint firstItem="D3e-ea-x4E" firstAttribute="top" secondItem="Fx1-kh-TeH" secondAttribute="top" id="yWY-lt-L4W"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -117,6 +136,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="background_view" destination="Fx1-kh-TeH" id="CxB-Ib-bhL"/>
+                                            <outlet property="blurView" destination="D3e-ea-x4E" id="BAB-lk-FPo"/>
+                                            <outlet property="btn_Creative" destination="0G8-er-c7C" id="JeI-rd-6F2"/>
                                             <outlet property="img_item" destination="dmE-Ky-ERr" id="FqJ-cV-0x8"/>
                                             <outlet property="lbl_description" destination="5Ol-d4-sOc" id="LUV-4q-fjz"/>
                                             <outlet property="lbl_name" destination="81N-Ph-MVH" id="DEG-Qr-g0P"/>
@@ -237,7 +258,7 @@
                                             <constraint firstAttribute="height" constant="50" id="fpD-aj-bz7"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <state key="normal" title="Back">
+                                        <state key="normal" title="Select">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
